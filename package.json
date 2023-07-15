@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Usama9999/grabr#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "serverless": "^3.33.0"
   }
 }
