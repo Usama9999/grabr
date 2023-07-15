@@ -25,7 +25,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm install -g serverless
-    - run: serverless config credentials --provider aws --key AKIAV2KOGNVPBXBBKZOX --secret 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 --overwrite
+    - run: serverless config credentials --provider aws --key ${{ secrets.AWS_ACCESS_KEY_ID }} --secret ${{ secrets.AWS_SECRET_ACCESS_KEY }} --overwrite
     # - run: sls config credentials --provider aws --key ${{ secrets.AWS_ACCESS_KEY_ID }} --secret ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     - run: npm ci
     - name: Deploy lambda function
