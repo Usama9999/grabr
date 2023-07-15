@@ -1,14 +1,20 @@
 "use strict";
+const express = require("express");
+var serverless = require("serverless-http");
 
-console.log("usama");
-module.exports.hello = async (event) => {
-  return {
-    statusCode: 200,
-    body: {
-      message: "Go Serverless v1.0! Your function executed successfully!",
-      input: event,
-    },
-  };
-  // Use this code if you don't use the http event with the LAMBDA-PROXY integration
-  // return { message: 'Go Serverless v1.0! Your function executed successfully!', event };
-};
+const connection = require("./database");
+const app = express();
+
+app.get("/hello", function (req, res) {
+  connection.query("select * from users", function (err, results, fields) {
+    if (err) {
+      return res.send(err);
+    }
+    return res.send(results);
+  });
+});
+const PORT = 5000;
+app.listen(PORT, "0.0.0.0", function () {
+  console.log(`App Listening on port ${PORT}`);
+});
+module.exports.hello = serverless(app);

@@ -1,0 +1,25 @@
+
+service: grabr
+ 
+provider:
+  name: aws
+  runtime: nodejs18.x 
+  stage: dev
+  timeout: 15 
+  region: us-east-2
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - http: #event trigger for the root route of an API Gateway HTTP  "/"
+          path: /
+          method: ANY # Any HTTP method is excepted
+          cors: true # CORS enabler
+      - http: #
+          path: /{proxy+}
+          method: ANY # Accept any HTTP method
+          cors: true # Enable CORS
+    environment: 
+      variable2: value2
+
