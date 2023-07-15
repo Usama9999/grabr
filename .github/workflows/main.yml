@@ -24,13 +24,12 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+    - run: npm install -g serverless
+    - run: sls config credentials --provider aws --key ${{ secrets.AWS_ACCESS_KEY_ID }} --secret ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     - run: npm ci
-    - run: npm i -g serverless
-    - run: serverless config credentials --provider aws --key ${{ secrets.AWS_ACCESS_KEY_ID }} --secret ${{ secrets.AWS_SECRET_ACCESS_KEY }} --overwrite
-    - name: serverless deploy
-      uses: serverless/github-action@master
-      with:
-        args: deploy
+    - name: Deploy lambda function
+      run: sls deploy
+
         # env: 
         # AWS_ACCESS_KEY_ID: 
         # AWS_SECRET_ACCESS_KEY: 
