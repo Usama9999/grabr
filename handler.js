@@ -14,7 +14,7 @@ app.get("/hello", function (req, res) {
   });
 });
 app.get("/usama", function (req, res) {
-  return res.send("usama");
+  return res.send("usamnna");
 });
 const PORT = 5000;
 app.listen(PORT, "0.0.0.0", function () {
