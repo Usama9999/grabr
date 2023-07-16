@@ -14,12 +14,7 @@ app.get("/hello", function (req, res) {
   });
 });
 app.get("/usama", function (req, res) {
-  connection.query("select * from users", function (err, results, fields) {
-    if (err) {
-      return res.send(err);
-    }
-    return res.send(results);
-  });
+  return res.send("usama");
 });
 const PORT = 5000;
 app.listen(PORT, "0.0.0.0", function () {
